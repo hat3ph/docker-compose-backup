@@ -130,3 +130,9 @@ Use sudo if your tarball content have root permission.
 ```bash
 sudo tar –xvzf backupXXX.tar.gz –C /destination
 ```
+
+### Download the tarball as backup
+Use scp to download the tarball to local as backup.
+```bash
+scp -r -i /path/ssl.key username@xxx.xxx.xxx.xxx:/path/backup /path/destination
+```
