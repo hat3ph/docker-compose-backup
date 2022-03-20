@@ -18,6 +18,24 @@ h     Print this Help.
 V     Print software version and exit.
 ```
 
+### Backup exclude .git or file
+Change or modify the script if want to exclude folders or files
+```bash
+# archive docker container and volume data
+cd ${bk_source} && tar -zcvf ${bk_dest}/$1_${bk_date}.tar.gz $1
+# archive docker container and volume data with file exclude
+#cd ${bk_source} && tar -zcvf ${bk_dest}/$1_${bk_date}.tar.gz --exclude-vcs --exlude="*.md" $1
+```
+
+### Reboot and reset tarball permission
+If you enable [iptables_ddns_update.sh](https://github.com/hat3ph/docker-adguard-unbound/blob/main/iptables_ddns_update.sh), might want to reboot the docker container to reset the iptables rules.
+```bash
+# reboot the host. only need if you have setup custom iptables rules
+# and set all backup archives owner if run the script via sudo
+#chown ubuntu:ubuntu ${bk_dest}/$1_*
+#/usr/sbin/reboot
+```
+
 ### Cron schedule backup
 Create `/etc/cron.d/docker-compose-backup` and set the time to auto run the script.
 Only require root if you are not running docker as non-root or need root access to backup/execute command.
