@@ -44,7 +44,7 @@ fi
 
 # keep how many of backup copy
 # uncomment below to enable backup housekeeping
-find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention}
+#find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention}
 #find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention} -delete
 
 if [ -z $1 ]; then
