@@ -12,13 +12,13 @@ Bash script to backup docker-compose container.
 Make sure setup your docker-compose to store all configuration
 and volume data in the same directory.
 
-Syntax: docker-compose-backup.sh DCOKER-COMPOSE-FOLDER_NAME [-h|V]
+Syntax: docker-compose-backup.sh DOCKER-COMPOSE-FOLDER_NAME [-h|V]
 options:
 h     Print this Help.
 V     Print software version and exit.
 ```
 
-### Backup exclude .git or file
+### Backup exclude .git folder or file
 Change or modify the script if want to exclude folders or files
 ```bash
 # archive docker container and volume data
