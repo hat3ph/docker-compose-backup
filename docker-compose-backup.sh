@@ -14,7 +14,7 @@ Help()
    echo "Make sure setup your docker-compose to store all configuration"
    echo "and volume data in the same directory."
    echo
-   echo "Syntax: docker-compose-backup.sh CONTAINER_FOLDER_NAME [-h|V]"
+   echo "Syntax: docker-compose-backup.sh DCOKER-COMPOSE-FOLDER-NAME [-h|V]"
    echo "options:"
    echo "h     Print this Help."
    echo "V     Print software version and exit."
