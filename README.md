@@ -36,6 +36,15 @@ If you enable [iptables_ddns_update.sh](https://github.com/hat3ph/docker-adguard
 #/usr/sbin/reboot
 ```
 
+### Backup retention
+Enable below if want to housekeep the backup tarball.
+```bash
+# keep how many of backup copy
+# uncomment below to enable backup housekeeping
+#find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention}
+#find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention} -delete
+```
+
 ### Cron schedule backup
 Create `/etc/cron.d/docker-compose-backup` and set the time to auto run the script.
 Only require root if you are not running docker as non-root or need root access to backup/execute command.
