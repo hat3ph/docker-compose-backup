@@ -17,6 +17,15 @@ options:
 h     Print this Help.
 V     Print software version and exit.
 ```
+### Configuration
+Edit the script to customize the backup
+```bash
+bk_source="/home/ubuntu" # Location of your docker-compose project
+bk_dest="/home/ubuntu/backup" # Directory to store the backup
+bk_retention="1" # Backup retention for housekeeping
+dc_down_wait="20" # Allow time before docker-compose shutdown
+dc_up_wait="40" # Allow time before docker-compose startup
+```
 
 ### Backup exclude .git folder or file
 Change or modify the script if want to exclude folders or files
