@@ -1,11 +1,11 @@
 #!/bin/sh
 
-bk_date=$(date "+%Y-%m-%dT%H_%M_%S")
-bk_source="/home/ubuntu"
-bk_dest="/home/ubuntu/backup"
-bk_retention="1"
-down_wait="20"
-up_wait="40"
+bk_date=$(date "+%Y-%m-%dT%H_%M_%S") # Date and time
+bk_source="/home/ubuntu" # Location of your docker-compose project
+bk_dest="/home/ubuntu/backup" # Directory to store the backup
+bk_retention="1" # Backup retention for housekeeping
+dc_down_wait="20" # Allow time before docker-compose shutdown
+dc_up_wait="40" # Allow time before docker-compose startup
 
 Help()
 {
