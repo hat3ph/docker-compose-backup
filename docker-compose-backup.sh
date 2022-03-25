@@ -55,6 +55,10 @@ elif [ -d ${bk_source}/$1 ]; then
         docker-compose -f ${bk_source}/$1/docker-compose.yml down
         # Wait x second for the docker container to properly shutdown
         sleep ${down_wait}
+        # Clear docker iptables rules
+        /usr/sbin/iptables -F DOCKER
+        # Delete the iptables_ddns_update data so that it will re-update iptables rule again
+        rm /tmp/ddns_ip.txt
         # Archive docker container and volume data
         cd ${bk_source} && tar -zcvf ${bk_dest}/$1_${bk_date}.tar.gz $1
         # Archive docker container and volume data with file exclude
@@ -63,9 +67,10 @@ elif [ -d ${bk_source}/$1 ]; then
         docker-compose -f ${bk_source}/$1/docker-compose.yml up -d
         # Wait x second for the docker container to properly startup
         sleep ${up_wait}
-        # Reboot the host. Enable only if you have setup custom iptables rules at startup
-        # and set all backup archives owner if run the script via sudo
-        #chown ubuntu:ubuntu ${bk_dest}/$1_*
+        # Set correct permission for the backup tarball
+        chown ubuntu:ubuntu ${bk_dest}/$1_*
+        #chown 1001:1001 ${bk_dest}/$1_*
+        #Optional to reboot the host
         #/usr/sbin/reboot
         exit;
 else
