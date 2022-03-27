@@ -46,9 +46,11 @@ If you enable [iptables_ddns_update.sh](https://github.com/hat3ph/docker-adguard
 ```
 
 ### Backup retention
-Enable below if want to housekeep the backup tarball.
+Enable below if want to housekeep the docker-compose backup tarball.
 ```bash
+bk_retention="1" # Backup retention for housekeeping
 # keep how many of backup copy
+# example +1 will keep latest 2 copies of backup
 # uncomment below to enable backup housekeeping
 #find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention}
 #find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention} -delete
