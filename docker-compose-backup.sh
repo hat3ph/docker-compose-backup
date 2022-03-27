@@ -43,6 +43,7 @@ if [ ! -d ${bk_dest} ]; then
 fi
 
 # keep how many of backup copy
+# example +1 will keep latest 2 copies of backup
 # uncomment below to enable backup housekeeping
 #find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention}
 #find ${bk_dest} -name "*.tar.gz" -type f -mtime +${bk_retention} -delete
