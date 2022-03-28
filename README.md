@@ -37,11 +37,10 @@ cd ${bk_source} && tar -zcvf ${bk_dest}/$1_${bk_date}.tar.gz $1
 ```
 
 ### Reboot and reset tarball permission
-If you enable [iptables_ddns_update.sh](https://github.com/hat3ph/docker-adguard-unbound/blob/main/iptables_ddns_update.sh), might want to reboot the docker container to reset the iptables rules.
+If you enable [iptables_ddns_update.sh](https://github.com/hat3ph/docker-adguard-unbound/blob/main/iptables_ddns_update.sh), might want to reboot the docker host to reset the iptables rules.
+I have add command to reset iptables DOCKER chain so this step is no longer needed. But you can opt to enable it to be safe.
 ```bash
-# reboot the host. only need if you have setup custom iptables rules
-# and set all backup archives owner if run the script via sudo
-#chown ubuntu:ubuntu ${bk_dest}/$1_*
+#Optional to reboot the host
 #/usr/sbin/reboot
 ```
 
