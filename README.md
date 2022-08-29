@@ -148,5 +148,5 @@ scp -r -i /path/ssl.key username@xxx.xxx.xxx.xxx:/path/backup /path/destination
 ```
 Use rsync to download the tarball to local as backup. Both host and client need to install the rsync program.
 ```bash
-rsync -ave "ssh -i /path/ssl.k" ubuntu@xxx.xxx.xxx.xxx:/path/backup /path/destination
+rsync -ave "ssh -i /path/ssl.key" ubuntu@xxx.xxx.xxx.xxx:/path/backup /path/destination
 ```
