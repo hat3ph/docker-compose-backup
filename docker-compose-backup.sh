@@ -14,7 +14,7 @@ Help()
    echo "Make sure setup your docker-compose to store all configuration"
    echo "and volume data in the same directory."
    echo
-   echo "Syntax: docker-compose-backup.sh DCOKER-COMPOSE-FOLDER-NAME [-h|V]"
+   echo "Syntax: docker-compose-backup.sh DOCKER-COMPOSE-FOLDER-NAME [-h|V]"
    echo "options:"
    echo "h     Print this Help."
    echo "V     Print software version and exit."
@@ -39,7 +39,8 @@ done
 # check backup directory
 if [ ! -d ${bk_dest} ]; then
         echo "Missing/wrong backup directory!"
-        exit;
+        mkdir -p ${bk_dest}
+        #exit;
 fi
 
 # keep how many of backup copy
@@ -53,21 +54,21 @@ if [ -z $1 ]; then
         Help
 elif [ -d ${bk_source}/$1 ]; then
         # Stop docker container
-        docker-compose -f ${bk_source}/$1/docker-compose.yml down
+        docker compose -f ${bk_source}/$1/docker-compose.yml down
         # Wait x second for the docker container to properly shutdown
-        sleep ${down_wait}
+        sleep ${dc_down_wait}
         # Clear docker iptables rules
-        /usr/sbin/iptables -F DOCKER
+        #/usr/sbin/iptables -F DOCKER
         # Delete the iptables_ddns_update data so that it will re-update iptables rule again
-        rm /tmp/ddns_ip.txt
+        #rm /tmp/ddns_ip.txt
         # Archive docker container and volume data
         cd ${bk_source} && tar -zcvf ${bk_dest}/$1_${bk_date}.tar.gz $1
         # Archive docker container and volume data with file exclude
         #cd ${bk_source} && tar -zcvf ${bk_dest}/$1_${bk_date}.tar.gz --exclude-vcs --exlude="*.md" $1
         # Start up the docker container
-        docker-compose -f ${bk_source}/$1/docker-compose.yml up -d
+        docker compose -f ${bk_source}/$1/docker-compose.yml up -d
         # Wait x second for the docker container to properly startup
-        sleep ${up_wait}
+        sleep ${dc_up_wait}
         # Set correct permission for the backup tarball
         chown ubuntu:ubuntu ${bk_dest}/$1_*
         #chown 1001:1001 ${bk_dest}/$1_*
